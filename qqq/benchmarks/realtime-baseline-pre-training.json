@@ -1,0 +1,1496 @@
+{
+  "run_date": "2026-06-29",
+  "test_set": {
+    "start": "2026-03-10",
+    "end": "2026-04-28",
+    "n": 36
+  },
+  "context_days": 90,
+  "up_count": 21,
+  "down_count": 15,
+  "majority_baseline": 0.583,
+  "model_ids": {
+    "qwen-3b": "Qwen/Qwen2.5-3B-Instruct",
+    "smollm-1b": "HuggingFaceTB/SmolLM2-1.7B-Instruct",
+    "gemma-2b": "google/gemma-2-2b-it",
+    "falcon-3b": "tiiuae/Falcon3-3B-Instruct"
+  },
+  "realtime_baseline": {
+    "qwen-3b": {
+      "accuracy": 0.0,
+      "buy_correct": 0,
+      "sell_correct": 0,
+      "hold_pct": 1.0,
+      "latency_mean": 1.007,
+      "n_buy": 0,
+      "n_sell": 0,
+      "n_hold": 36,
+      "n_correct": 0,
+      "n_total": 36
+    },
+    "smollm-1b": {
+      "accuracy": 0.417,
+      "buy_correct": 0,
+      "sell_correct": 0.417,
+      "hold_pct": 0.0,
+      "latency_mean": 0.649,
+      "n_buy": 0,
+      "n_sell": 36,
+      "n_hold": 0,
+      "n_correct": 15,
+      "n_total": 36
+    },
+    "gemma-2b": {
+      "accuracy": 0.0,
+      "buy_correct": 0,
+      "sell_correct": 0,
+      "hold_pct": 1.0,
+      "latency_mean": 0.786,
+      "n_buy": 0,
+      "n_sell": 0,
+      "n_hold": 36,
+      "n_correct": 0,
+      "n_total": 36
+    },
+    "falcon-3b": {
+      "accuracy": 0.417,
+      "buy_correct": 0.5,
+      "sell_correct": 0.2,
+      "hold_pct": 0.0,
+      "latency_mean": 0.817,
+      "n_buy": 26,
+      "n_sell": 10,
+      "n_hold": 0,
+      "n_correct": 15,
+      "n_total": 36
+    },
+    "always-BUY": {
+      "accuracy": 0.583,
+      "buy_correct": 0.583,
+      "sell_correct": 0,
+      "hold_pct": 0.0,
+      "latency_mean": 0,
+      "n_buy": 36,
+      "n_sell": 0,
+      "n_hold": 0,
+      "n_correct": 21,
+      "n_total": 36
+    },
+    "always-SELL": {
+      "accuracy": 0.417,
+      "buy_correct": 0,
+      "sell_correct": 0.417,
+      "hold_pct": 0.0,
+      "latency_mean": 0,
+      "n_buy": 0,
+      "n_sell": 36,
+      "n_hold": 0,
+      "n_correct": 15,
+      "n_total": 36
+    },
+    "random": {
+      "accuracy": 0.278,
+      "buy_correct": 0.5,
+      "sell_correct": 0.4,
+      "hold_pct": 0.417,
+      "latency_mean": 0,
+      "n_buy": 16,
+      "n_sell": 5,
+      "n_hold": 15,
+      "n_correct": 10,
+      "n_total": 36
+    }
+  },
+  "weekly_baseline": {
+    "qwen-3b": {
+      "accuracy": 0.0,
+      "buy_correct": 0,
+      "sell_correct": 0,
+      "hold_pct": 1.0,
+      "latency_mean": 1.007,
+      "n_buy": 0,
+      "n_sell": 0,
+      "n_hold": 8,
+      "n_correct": 0,
+      "n_total": 8
+    },
+    "smollm-1b": {
+      "accuracy": 0.5,
+      "buy_correct": 0,
+      "sell_correct": 0.5,
+      "hold_pct": 0.0,
+      "latency_mean": 0.649,
+      "n_buy": 0,
+      "n_sell": 8,
+      "n_hold": 0,
+      "n_correct": 4,
+      "n_total": 8
+    },
+    "gemma-2b": {
+      "accuracy": 0.0,
+      "buy_correct": 0,
+      "sell_correct": 0,
+      "hold_pct": 1.0,
+      "latency_mean": 0.786,
+      "n_buy": 0,
+      "n_sell": 0,
+      "n_hold": 8,
+      "n_correct": 0,
+      "n_total": 8
+    },
+    "falcon-3b": {
+      "accuracy": 0.75,
+      "buy_correct": 0.667,
+      "sell_correct": 1.0,
+      "hold_pct": 0.0,
+      "latency_mean": 0.817,
+      "n_buy": 6,
+      "n_sell": 2,
+      "n_hold": 0,
+      "n_correct": 6,
+      "n_total": 8
+    },
+    "always-BUY": {
+      "accuracy": 0.5,
+      "buy_correct": 0.5,
+      "sell_correct": 0,
+      "hold_pct": 0.0,
+      "latency_mean": 0,
+      "n_buy": 8,
+      "n_sell": 0,
+      "n_hold": 0,
+      "n_correct": 4,
+      "n_total": 8
+    },
+    "always-SELL": {
+      "accuracy": 0.5,
+      "buy_correct": 0,
+      "sell_correct": 0.5,
+      "hold_pct": 0.0,
+      "latency_mean": 0,
+      "n_buy": 0,
+      "n_sell": 8,
+      "n_hold": 0,
+      "n_correct": 4,
+      "n_total": 8
+    },
+    "random": {
+      "accuracy": 0.5,
+      "buy_correct": 0.6,
+      "sell_correct": 1.0,
+      "hold_pct": 0.25,
+      "latency_mean": 0,
+      "n_buy": 5,
+      "n_sell": 1,
+      "n_hold": 2,
+      "n_correct": 4,
+      "n_total": 8
+    }
+  },
+  "per_day_results": {
+    "qwen-3b": [
+      {
+        "date": "2026-03-10",
+        "pred": "HOLD",
+        "actual": "UP",
+        "latency": 1.01,
+        "open_close": [
+          504.0032
+        ]
+      },
+      {
+        "date": "2026-03-11",
+        "pred": "HOLD",
+        "actual": "DOWN",
+        "latency": 1.0,
+        "open_close": [
+          506.3464
+        ]
+      },
+      {
+        "date": "2026-03-12",
+        "pred": "HOLD",
+        "actual": "UP",
+        "latency": 1.002,
+        "open_close": [
+          499.6969
+        ]
+      },
+      {
+        "date": "2026-03-13",
+        "pred": "HOLD",
+        "actual": "UP",
+        "latency": 1.003,
+        "open_close": [
+          506.6979
+        ]
+      },
+      {
+        "date": "2026-03-16",
+        "pred": "HOLD",
+        "actual": "UP",
+        "latency": 0.987,
+        "open_close": [
+          507.3209
+        ]
+      },
+      {
+        "date": "2026-03-17",
+        "pred": "HOLD",
+        "actual": "DOWN",
+        "latency": 1.0,
+        "open_close": [
+          521.9379
+        ]
+      },
+      {
+        "date": "2026-03-18",
+        "pred": "HOLD",
+        "actual": "UP",
+        "latency": 0.999,
+        "open_close": [
+          521.9321
+        ]
+      },
+      {
+        "date": "2026-03-19",
+        "pred": "HOLD",
+        "actual": "DOWN",
+        "latency": 1.016,
+        "open_close": [
+          528.766
+        ]
+      },
+      {
+        "date": "2026-03-20",
+        "pred": "HOLD",
+        "actual": "DOWN",
+        "latency": 0.996,
+        "open_close": [
+          517.742
+        ]
+      },
+      {
+        "date": "2026-03-23",
+        "pred": "HOLD",
+        "actual": "UP",
+        "latency": 1.006,
+        "open_close": [
+          515.8875
+        ]
+      },
+      {
+        "date": "2026-03-24",
+        "pred": "HOLD",
+        "actual": "UP",
+        "latency": 0.997,
+        "open_close": [
+          517.0814
+        ]
+      },
+      {
+        "date": "2026-03-25",
+        "pred": "HOLD",
+        "actual": "DOWN",
+        "latency": 1.003,
+        "open_close": [
+          527.0126
+        ]
+      },
+      {
+        "date": "2026-03-26",
+        "pred": "HOLD",
+        "actual": "UP",
+        "latency": 0.995,
+        "open_close": [
+          513.9622
+        ]
+      },
+      {
+        "date": "2026-03-27",
+        "pred": "HOLD",
+        "actual": "UP",
+        "latency": 0.997,
+        "open_close": [
+          519.5944
+        ]
+      },
+      {
+        "date": "2026-03-30",
+        "pred": "HOLD",
+        "actual": "UP",
+        "latency": 1.004,
+        "open_close": [
+          521.895
+        ]
+      },
+      {
+        "date": "2026-03-31",
+        "pred": "HOLD",
+        "actual": "UP",
+        "latency": 1.01,
+        "open_close": [
+          529.8005
+        ]
+      },
+      {
+        "date": "2026-04-01",
+        "pred": "HOLD",
+        "actual": "DOWN",
+        "latency": 1.003,
+        "open_close": [
+          531.2905
+        ]
+      },
+      {
+        "date": "2026-04-02",
+        "pred": "HOLD",
+        "actual": "DOWN",
+        "latency": 1.016,
+        "open_close": [
+          528.3435
+        ]
+      },
+      {
+        "date": "2026-04-03",
+        "pred": "HOLD",
+        "actual": "DOWN",
+        "latency": 1.008,
+        "open_close": [
+          522.2695
+        ]
+      },
+      {
+        "date": "2026-04-06",
+        "pred": "HOLD",
+        "actual": "UP",
+        "latency": 1.005,
+        "open_close": [
+          512.7174
+        ]
+      },
+      {
+        "date": "2026-04-07",
+        "pred": "HOLD",
+        "actual": "DOWN",
+        "latency": 1.006,
+        "open_close": [
+          513.6051
+        ]
+      },
+      {
+        "date": "2026-04-08",
+        "pred": "HOLD",
+        "actual": "UP",
+        "latency": 1.008,
+        "open_close": [
+          511.9735
+        ]
+      },
+      {
+        "date": "2026-04-09",
+        "pred": "HOLD",
+        "actual": "DOWN",
+        "latency": 1.009,
+        "open_close": [
+          524.3314
+        ]
+      },
+      {
+        "date": "2026-04-10",
+        "pred": "HOLD",
+        "actual": "UP",
+        "latency": 1.007,
+        "open_close": [
+          518.3715
+        ]
+      },
+      {
+        "date": "2026-04-13",
+        "pred": "HOLD",
+        "actual": "DOWN",
+        "latency": 1.008,
+        "open_close": [
+          519.1669
+        ]
+      },
+      {
+        "date": "2026-04-14",
+        "pred": "HOLD",
+        "actual": "DOWN",
+        "latency": 1.006,
+        "open_close": [
+          508.1859
+        ]
+      },
+      {
+        "date": "2026-04-15",
+        "pred": "HOLD",
+        "actual": "UP",
+        "latency": 1.016,
+        "open_close": [
+          506.1566
+        ]
+      },
+      {
+        "date": "2026-04-16",
+        "pred": "HOLD",
+        "actual": "UP",
+        "latency": 1.013,
+        "open_close": [
+          508.4327
+        ]
+      },
+      {
+        "date": "2026-04-17",
+        "pred": "HOLD",
+        "actual": "UP",
+        "latency": 1.015,
+        "open_close": [
+          513.829
+        ]
+      },
+      {
+        "date": "2026-04-20",
+        "pred": "HOLD",
+        "actual": "DOWN",
+        "latency": 1.009,
+        "open_close": [
+          522.3402
+        ]
+      },
+      {
+        "date": "2026-04-21",
+        "pred": "HOLD",
+        "actual": "DOWN",
+        "latency": 1.019,
+        "open_close": [
+          520.2384
+        ]
+      },
+      {
+        "date": "2026-04-22",
+        "pred": "HOLD",
+        "actual": "UP",
+        "latency": 1.017,
+        "open_close": [
+          511.8383
+        ]
+      },
+      {
+        "date": "2026-04-23",
+        "pred": "HOLD",
+        "actual": "UP",
+        "latency": 1.016,
+        "open_close": [
+          514.4773
+        ]
+      },
+      {
+        "date": "2026-04-24",
+        "pred": "HOLD",
+        "actual": "UP",
+        "latency": 1.013,
+        "open_close": [
+          517.0875
+        ]
+      },
+      {
+        "date": "2026-04-27",
+        "pred": "HOLD",
+        "actual": "DOWN",
+        "latency": 1.012,
+        "open_close": [
+          519.1463
+        ]
+      },
+      {
+        "date": "2026-04-28",
+        "pred": "HOLD",
+        "actual": "UP",
+        "latency": 1.015,
+        "open_close": [
+          513.494
+        ]
+      }
+    ],
+    "smollm-1b": [
+      {
+        "date": "2026-03-10",
+        "pred": "SELL",
+        "actual": "UP",
+        "latency": 0.645,
+        "open_close": [
+          504.0032
+        ]
+      },
+      {
+        "date": "2026-03-11",
+        "pred": "SELL",
+        "actual": "DOWN",
+        "latency": 0.648,
+        "open_close": [
+          506.3464
+        ]
+      },
+      {
+        "date": "2026-03-12",
+        "pred": "SELL",
+        "actual": "UP",
+        "latency": 0.651,
+        "open_close": [
+          499.6969
+        ]
+      },
+      {
+        "date": "2026-03-13",
+        "pred": "SELL",
+        "actual": "UP",
+        "latency": 0.645,
+        "open_close": [
+          506.6979
+        ]
+      },
+      {
+        "date": "2026-03-16",
+        "pred": "SELL",
+        "actual": "UP",
+        "latency": 0.648,
+        "open_close": [
+          507.3209
+        ]
+      },
+      {
+        "date": "2026-03-17",
+        "pred": "SELL",
+        "actual": "DOWN",
+        "latency": 0.643,
+        "open_close": [
+          521.9379
+        ]
+      },
+      {
+        "date": "2026-03-18",
+        "pred": "SELL",
+        "actual": "UP",
+        "latency": 0.644,
+        "open_close": [
+          521.9321
+        ]
+      },
+      {
+        "date": "2026-03-19",
+        "pred": "SELL",
+        "actual": "DOWN",
+        "latency": 0.643,
+        "open_close": [
+          528.766
+        ]
+      },
+      {
+        "date": "2026-03-20",
+        "pred": "SELL",
+        "actual": "DOWN",
+        "latency": 0.645,
+        "open_close": [
+          517.742
+        ]
+      },
+      {
+        "date": "2026-03-23",
+        "pred": "SELL",
+        "actual": "UP",
+        "latency": 0.648,
+        "open_close": [
+          515.8875
+        ]
+      },
+      {
+        "date": "2026-03-24",
+        "pred": "SELL",
+        "actual": "UP",
+        "latency": 0.651,
+        "open_close": [
+          517.0814
+        ]
+      },
+      {
+        "date": "2026-03-25",
+        "pred": "SELL",
+        "actual": "DOWN",
+        "latency": 0.648,
+        "open_close": [
+          527.0126
+        ]
+      },
+      {
+        "date": "2026-03-26",
+        "pred": "SELL",
+        "actual": "UP",
+        "latency": 0.651,
+        "open_close": [
+          513.9622
+        ]
+      },
+      {
+        "date": "2026-03-27",
+        "pred": "SELL",
+        "actual": "UP",
+        "latency": 0.644,
+        "open_close": [
+          519.5944
+        ]
+      },
+      {
+        "date": "2026-03-30",
+        "pred": "SELL",
+        "actual": "UP",
+        "latency": 0.653,
+        "open_close": [
+          521.895
+        ]
+      },
+      {
+        "date": "2026-03-31",
+        "pred": "SELL",
+        "actual": "UP",
+        "latency": 0.665,
+        "open_close": [
+          529.8005
+        ]
+      },
+      {
+        "date": "2026-04-01",
+        "pred": "SELL",
+        "actual": "DOWN",
+        "latency": 0.653,
+        "open_close": [
+          531.2905
+        ]
+      },
+      {
+        "date": "2026-04-02",
+        "pred": "SELL",
+        "actual": "DOWN",
+        "latency": 0.659,
+        "open_close": [
+          528.3435
+        ]
+      },
+      {
+        "date": "2026-04-03",
+        "pred": "SELL",
+        "actual": "DOWN",
+        "latency": 0.649,
+        "open_close": [
+          522.2695
+        ]
+      },
+      {
+        "date": "2026-04-06",
+        "pred": "SELL",
+        "actual": "UP",
+        "latency": 0.644,
+        "open_close": [
+          512.7174
+        ]
+      },
+      {
+        "date": "2026-04-07",
+        "pred": "SELL",
+        "actual": "DOWN",
+        "latency": 0.647,
+        "open_close": [
+          513.6051
+        ]
+      },
+      {
+        "date": "2026-04-08",
+        "pred": "SELL",
+        "actual": "UP",
+        "latency": 0.646,
+        "open_close": [
+          511.9735
+        ]
+      },
+      {
+        "date": "2026-04-09",
+        "pred": "SELL",
+        "actual": "DOWN",
+        "latency": 0.649,
+        "open_close": [
+          524.3314
+        ]
+      },
+      {
+        "date": "2026-04-10",
+        "pred": "SELL",
+        "actual": "UP",
+        "latency": 0.644,
+        "open_close": [
+          518.3715
+        ]
+      },
+      {
+        "date": "2026-04-13",
+        "pred": "SELL",
+        "actual": "DOWN",
+        "latency": 0.648,
+        "open_close": [
+          519.1669
+        ]
+      },
+      {
+        "date": "2026-04-14",
+        "pred": "SELL",
+        "actual": "DOWN",
+        "latency": 0.653,
+        "open_close": [
+          508.1859
+        ]
+      },
+      {
+        "date": "2026-04-15",
+        "pred": "SELL",
+        "actual": "UP",
+        "latency": 0.64,
+        "open_close": [
+          506.1566
+        ]
+      },
+      {
+        "date": "2026-04-16",
+        "pred": "SELL",
+        "actual": "UP",
+        "latency": 0.647,
+        "open_close": [
+          508.4327
+        ]
+      },
+      {
+        "date": "2026-04-17",
+        "pred": "SELL",
+        "actual": "UP",
+        "latency": 0.653,
+        "open_close": [
+          513.829
+        ]
+      },
+      {
+        "date": "2026-04-20",
+        "pred": "SELL",
+        "actual": "DOWN",
+        "latency": 0.656,
+        "open_close": [
+          522.3402
+        ]
+      },
+      {
+        "date": "2026-04-21",
+        "pred": "SELL",
+        "actual": "DOWN",
+        "latency": 0.654,
+        "open_close": [
+          520.2384
+        ]
+      },
+      {
+        "date": "2026-04-22",
+        "pred": "SELL",
+        "actual": "UP",
+        "latency": 0.659,
+        "open_close": [
+          511.8383
+        ]
+      },
+      {
+        "date": "2026-04-23",
+        "pred": "SELL",
+        "actual": "UP",
+        "latency": 0.653,
+        "open_close": [
+          514.4773
+        ]
+      },
+      {
+        "date": "2026-04-24",
+        "pred": "SELL",
+        "actual": "UP",
+        "latency": 0.646,
+        "open_close": [
+          517.0875
+        ]
+      },
+      {
+        "date": "2026-04-27",
+        "pred": "SELL",
+        "actual": "DOWN",
+        "latency": 0.647,
+        "open_close": [
+          519.1463
+        ]
+      },
+      {
+        "date": "2026-04-28",
+        "pred": "SELL",
+        "actual": "UP",
+        "latency": 0.646,
+        "open_close": [
+          513.494
+        ]
+      }
+    ],
+    "gemma-2b": [
+      {
+        "date": "2026-03-10",
+        "pred": "HOLD",
+        "actual": "UP",
+        "latency": 0.772,
+        "open_close": [
+          504.0032
+        ]
+      },
+      {
+        "date": "2026-03-11",
+        "pred": "HOLD",
+        "actual": "DOWN",
+        "latency": 0.767,
+        "open_close": [
+          506.3464
+        ]
+      },
+      {
+        "date": "2026-03-12",
+        "pred": "HOLD",
+        "actual": "UP",
+        "latency": 0.777,
+        "open_close": [
+          499.6969
+        ]
+      },
+      {
+        "date": "2026-03-13",
+        "pred": "HOLD",
+        "actual": "UP",
+        "latency": 0.791,
+        "open_close": [
+          506.6979
+        ]
+      },
+      {
+        "date": "2026-03-16",
+        "pred": "HOLD",
+        "actual": "UP",
+        "latency": 0.771,
+        "open_close": [
+          507.3209
+        ]
+      },
+      {
+        "date": "2026-03-17",
+        "pred": "HOLD",
+        "actual": "DOWN",
+        "latency": 0.771,
+        "open_close": [
+          521.9379
+        ]
+      },
+      {
+        "date": "2026-03-18",
+        "pred": "HOLD",
+        "actual": "UP",
+        "latency": 0.778,
+        "open_close": [
+          521.9321
+        ]
+      },
+      {
+        "date": "2026-03-19",
+        "pred": "HOLD",
+        "actual": "DOWN",
+        "latency": 0.771,
+        "open_close": [
+          528.766
+        ]
+      },
+      {
+        "date": "2026-03-20",
+        "pred": "HOLD",
+        "actual": "DOWN",
+        "latency": 0.778,
+        "open_close": [
+          517.742
+        ]
+      },
+      {
+        "date": "2026-03-23",
+        "pred": "HOLD",
+        "actual": "UP",
+        "latency": 0.767,
+        "open_close": [
+          515.8875
+        ]
+      },
+      {
+        "date": "2026-03-24",
+        "pred": "HOLD",
+        "actual": "UP",
+        "latency": 0.896,
+        "open_close": [
+          517.0814
+        ]
+      },
+      {
+        "date": "2026-03-25",
+        "pred": "HOLD",
+        "actual": "DOWN",
+        "latency": 0.778,
+        "open_close": [
+          527.0126
+        ]
+      },
+      {
+        "date": "2026-03-26",
+        "pred": "HOLD",
+        "actual": "UP",
+        "latency": 0.811,
+        "open_close": [
+          513.9622
+        ]
+      },
+      {
+        "date": "2026-03-27",
+        "pred": "HOLD",
+        "actual": "UP",
+        "latency": 0.771,
+        "open_close": [
+          519.5944
+        ]
+      },
+      {
+        "date": "2026-03-30",
+        "pred": "HOLD",
+        "actual": "UP",
+        "latency": 0.773,
+        "open_close": [
+          521.895
+        ]
+      },
+      {
+        "date": "2026-03-31",
+        "pred": "HOLD",
+        "actual": "UP",
+        "latency": 0.771,
+        "open_close": [
+          529.8005
+        ]
+      },
+      {
+        "date": "2026-04-01",
+        "pred": "HOLD",
+        "actual": "DOWN",
+        "latency": 0.779,
+        "open_close": [
+          531.2905
+        ]
+      },
+      {
+        "date": "2026-04-02",
+        "pred": "HOLD",
+        "actual": "DOWN",
+        "latency": 0.774,
+        "open_close": [
+          528.3435
+        ]
+      },
+      {
+        "date": "2026-04-03",
+        "pred": "HOLD",
+        "actual": "DOWN",
+        "latency": 0.768,
+        "open_close": [
+          522.2695
+        ]
+      },
+      {
+        "date": "2026-04-06",
+        "pred": "HOLD",
+        "actual": "UP",
+        "latency": 0.772,
+        "open_close": [
+          512.7174
+        ]
+      },
+      {
+        "date": "2026-04-07",
+        "pred": "HOLD",
+        "actual": "DOWN",
+        "latency": 0.776,
+        "open_close": [
+          513.6051
+        ]
+      },
+      {
+        "date": "2026-04-08",
+        "pred": "HOLD",
+        "actual": "UP",
+        "latency": 0.772,
+        "open_close": [
+          511.9735
+        ]
+      },
+      {
+        "date": "2026-04-09",
+        "pred": "HOLD",
+        "actual": "DOWN",
+        "latency": 0.818,
+        "open_close": [
+          524.3314
+        ]
+      },
+      {
+        "date": "2026-04-10",
+        "pred": "HOLD",
+        "actual": "UP",
+        "latency": 0.776,
+        "open_close": [
+          518.3715
+        ]
+      },
+      {
+        "date": "2026-04-13",
+        "pred": "HOLD",
+        "actual": "DOWN",
+        "latency": 0.777,
+        "open_close": [
+          519.1669
+        ]
+      },
+      {
+        "date": "2026-04-14",
+        "pred": "HOLD",
+        "actual": "DOWN",
+        "latency": 0.774,
+        "open_close": [
+          508.1859
+        ]
+      },
+      {
+        "date": "2026-04-15",
+        "pred": "HOLD",
+        "actual": "UP",
+        "latency": 0.773,
+        "open_close": [
+          506.1566
+        ]
+      },
+      {
+        "date": "2026-04-16",
+        "pred": "HOLD",
+        "actual": "UP",
+        "latency": 0.779,
+        "open_close": [
+          508.4327
+        ]
+      },
+      {
+        "date": "2026-04-17",
+        "pred": "HOLD",
+        "actual": "UP",
+        "latency": 0.828,
+        "open_close": [
+          513.829
+        ]
+      },
+      {
+        "date": "2026-04-20",
+        "pred": "HOLD",
+        "actual": "DOWN",
+        "latency": 0.796,
+        "open_close": [
+          522.3402
+        ]
+      },
+      {
+        "date": "2026-04-21",
+        "pred": "HOLD",
+        "actual": "DOWN",
+        "latency": 0.779,
+        "open_close": [
+          520.2384
+        ]
+      },
+      {
+        "date": "2026-04-22",
+        "pred": "HOLD",
+        "actual": "UP",
+        "latency": 0.783,
+        "open_close": [
+          511.8383
+        ]
+      },
+      {
+        "date": "2026-04-23",
+        "pred": "HOLD",
+        "actual": "UP",
+        "latency": 0.789,
+        "open_close": [
+          514.4773
+        ]
+      },
+      {
+        "date": "2026-04-24",
+        "pred": "HOLD",
+        "actual": "UP",
+        "latency": 0.834,
+        "open_close": [
+          517.0875
+        ]
+      },
+      {
+        "date": "2026-04-27",
+        "pred": "HOLD",
+        "actual": "DOWN",
+        "latency": 0.813,
+        "open_close": [
+          519.1463
+        ]
+      },
+      {
+        "date": "2026-04-28",
+        "pred": "HOLD",
+        "actual": "UP",
+        "latency": 0.78,
+        "open_close": [
+          513.494
+        ]
+      }
+    ],
+    "falcon-3b": [
+      {
+        "date": "2026-03-10",
+        "pred": "SELL",
+        "actual": "UP",
+        "latency": 0.803,
+        "open_close": [
+          504.0032
+        ]
+      },
+      {
+        "date": "2026-03-11",
+        "pred": "SELL",
+        "actual": "DOWN",
+        "latency": 0.805,
+        "open_close": [
+          506.3464
+        ]
+      },
+      {
+        "date": "2026-03-12",
+        "pred": "SELL",
+        "actual": "UP",
+        "latency": 0.806,
+        "open_close": [
+          499.6969
+        ]
+      },
+      {
+        "date": "2026-03-13",
+        "pred": "SELL",
+        "actual": "UP",
+        "latency": 0.807,
+        "open_close": [
+          506.6979
+        ]
+      },
+      {
+        "date": "2026-03-16",
+        "pred": "BUY",
+        "actual": "UP",
+        "latency": 0.8,
+        "open_close": [
+          507.3209
+        ]
+      },
+      {
+        "date": "2026-03-17",
+        "pred": "BUY",
+        "actual": "DOWN",
+        "latency": 0.795,
+        "open_close": [
+          521.9379
+        ]
+      },
+      {
+        "date": "2026-03-18",
+        "pred": "BUY",
+        "actual": "UP",
+        "latency": 0.801,
+        "open_close": [
+          521.9321
+        ]
+      },
+      {
+        "date": "2026-03-19",
+        "pred": "BUY",
+        "actual": "DOWN",
+        "latency": 0.867,
+        "open_close": [
+          528.766
+        ]
+      },
+      {
+        "date": "2026-03-20",
+        "pred": "BUY",
+        "actual": "DOWN",
+        "latency": 0.804,
+        "open_close": [
+          517.742
+        ]
+      },
+      {
+        "date": "2026-03-23",
+        "pred": "BUY",
+        "actual": "UP",
+        "latency": 0.816,
+        "open_close": [
+          515.8875
+        ]
+      },
+      {
+        "date": "2026-03-24",
+        "pred": "BUY",
+        "actual": "UP",
+        "latency": 0.806,
+        "open_close": [
+          517.0814
+        ]
+      },
+      {
+        "date": "2026-03-25",
+        "pred": "BUY",
+        "actual": "DOWN",
+        "latency": 0.865,
+        "open_close": [
+          527.0126
+        ]
+      },
+      {
+        "date": "2026-03-26",
+        "pred": "BUY",
+        "actual": "UP",
+        "latency": 0.808,
+        "open_close": [
+          513.9622
+        ]
+      },
+      {
+        "date": "2026-03-27",
+        "pred": "BUY",
+        "actual": "UP",
+        "latency": 0.813,
+        "open_close": [
+          519.5944
+        ]
+      },
+      {
+        "date": "2026-03-30",
+        "pred": "BUY",
+        "actual": "UP",
+        "latency": 0.806,
+        "open_close": [
+          521.895
+        ]
+      },
+      {
+        "date": "2026-03-31",
+        "pred": "BUY",
+        "actual": "UP",
+        "latency": 0.813,
+        "open_close": [
+          529.8005
+        ]
+      },
+      {
+        "date": "2026-04-01",
+        "pred": "BUY",
+        "actual": "DOWN",
+        "latency": 0.848,
+        "open_close": [
+          531.2905
+        ]
+      },
+      {
+        "date": "2026-04-02",
+        "pred": "BUY",
+        "actual": "DOWN",
+        "latency": 0.802,
+        "open_close": [
+          528.3435
+        ]
+      },
+      {
+        "date": "2026-04-03",
+        "pred": "BUY",
+        "actual": "DOWN",
+        "latency": 0.804,
+        "open_close": [
+          522.2695
+        ]
+      },
+      {
+        "date": "2026-04-06",
+        "pred": "BUY",
+        "actual": "UP",
+        "latency": 0.805,
+        "open_close": [
+          512.7174
+        ]
+      },
+      {
+        "date": "2026-04-07",
+        "pred": "BUY",
+        "actual": "DOWN",
+        "latency": 0.804,
+        "open_close": [
+          513.6051
+        ]
+      },
+      {
+        "date": "2026-04-08",
+        "pred": "SELL",
+        "actual": "UP",
+        "latency": 0.808,
+        "open_close": [
+          511.9735
+        ]
+      },
+      {
+        "date": "2026-04-09",
+        "pred": "BUY",
+        "actual": "DOWN",
+        "latency": 0.957,
+        "open_close": [
+          524.3314
+        ]
+      },
+      {
+        "date": "2026-04-10",
+        "pred": "SELL",
+        "actual": "UP",
+        "latency": 0.807,
+        "open_close": [
+          518.3715
+        ]
+      },
+      {
+        "date": "2026-04-13",
+        "pred": "BUY",
+        "actual": "DOWN",
+        "latency": 0.807,
+        "open_close": [
+          519.1669
+        ]
+      },
+      {
+        "date": "2026-04-14",
+        "pred": "SELL",
+        "actual": "DOWN",
+        "latency": 0.806,
+        "open_close": [
+          508.1859
+        ]
+      },
+      {
+        "date": "2026-04-15",
+        "pred": "SELL",
+        "actual": "UP",
+        "latency": 0.812,
+        "open_close": [
+          506.1566
+        ]
+      },
+      {
+        "date": "2026-04-16",
+        "pred": "SELL",
+        "actual": "UP",
+        "latency": 0.813,
+        "open_close": [
+          508.4327
+        ]
+      },
+      {
+        "date": "2026-04-17",
+        "pred": "BUY",
+        "actual": "UP",
+        "latency": 0.811,
+        "open_close": [
+          513.829
+        ]
+      },
+      {
+        "date": "2026-04-20",
+        "pred": "BUY",
+        "actual": "DOWN",
+        "latency": 0.814,
+        "open_close": [
+          522.3402
+        ]
+      },
+      {
+        "date": "2026-04-21",
+        "pred": "BUY",
+        "actual": "DOWN",
+        "latency": 0.814,
+        "open_close": [
+          520.2384
+        ]
+      },
+      {
+        "date": "2026-04-22",
+        "pred": "SELL",
+        "actual": "UP",
+        "latency": 0.805,
+        "open_close": [
+          511.8383
+        ]
+      },
+      {
+        "date": "2026-04-23",
+        "pred": "BUY",
+        "actual": "UP",
+        "latency": 0.807,
+        "open_close": [
+          514.4773
+        ]
+      },
+      {
+        "date": "2026-04-24",
+        "pred": "BUY",
+        "actual": "UP",
+        "latency": 0.807,
+        "open_close": [
+          517.0875
+        ]
+      },
+      {
+        "date": "2026-04-27",
+        "pred": "BUY",
+        "actual": "DOWN",
+        "latency": 0.81,
+        "open_close": [
+          519.1463
+        ]
+      },
+      {
+        "date": "2026-04-28",
+        "pred": "BUY",
+        "actual": "UP",
+        "latency": 0.846,
+        "open_close": [
+          513.494
+        ]
+      }
+    ]
+  }
+}
