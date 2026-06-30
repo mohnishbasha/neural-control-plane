@@ -1,0 +1,110 @@
+{
+  "daily": [
+    {
+      "model": "qwen-3b",
+      "signal_type": "daily",
+      "total": 36,
+      "correct": 21,
+      "accuracy": 0.5833,
+      "buy_count": 20,
+      "buy_correct": 12,
+      "sell_count": 14,
+      "sell_correct": 7,
+      "hold_pct": 0.0556,
+      "avg_latency": 0.14
+    },
+    {
+      "model": "smollm-1b",
+      "signal_type": "daily",
+      "total": 36,
+      "correct": 16,
+      "accuracy": 0.4444,
+      "buy_count": 17,
+      "buy_correct": 9,
+      "sell_count": 19,
+      "sell_correct": 7,
+      "hold_pct": 0.0,
+      "avg_latency": 0.14
+    },
+    {
+      "model": "gemma-2b",
+      "signal_type": "daily",
+      "total": 36,
+      "correct": 21,
+      "accuracy": 0.5833,
+      "buy_count": 20,
+      "buy_correct": 12,
+      "sell_count": 0,
+      "sell_correct": 0,
+      "hold_pct": 0.4444,
+      "avg_latency": 0.2
+    },
+    {
+      "model": "falcon-3b",
+      "signal_type": "daily",
+      "total": 36,
+      "correct": 22,
+      "accuracy": 0.6111,
+      "buy_count": 25,
+      "buy_correct": 16,
+      "sell_count": 11,
+      "sell_correct": 6,
+      "hold_pct": 0.0,
+      "avg_latency": 0.13
+    }
+  ],
+  "weekly": [
+    {
+      "model": "qwen-3b",
+      "signal_type": "weekly",
+      "total": 12,
+      "correct": 6,
+      "accuracy": 0.5,
+      "buy_count": 1,
+      "buy_correct": 0,
+      "sell_count": 11,
+      "sell_correct": 6,
+      "hold_pct": 0.0,
+      "avg_latency": 0.13
+    },
+    {
+      "model": "smollm-1b",
+      "signal_type": "weekly",
+      "total": 12,
+      "correct": 7,
+      "accuracy": 0.5833,
+      "buy_count": 0,
+      "buy_correct": 0,
+      "sell_count": 12,
+      "sell_correct": 7,
+      "hold_pct": 0.0,
+      "avg_latency": 0.13
+    },
+    {
+      "model": "gemma-2b",
+      "signal_type": "weekly",
+      "total": 12,
+      "correct": 5,
+      "accuracy": 0.4167,
+      "buy_count": 6,
+      "buy_correct": 2,
+      "sell_count": 6,
+      "sell_correct": 3,
+      "hold_pct": 0.0,
+      "avg_latency": 0.13
+    },
+    {
+      "model": "falcon-3b",
+      "signal_type": "weekly",
+      "total": 12,
+      "correct": 5,
+      "accuracy": 0.4167,
+      "buy_count": 10,
+      "buy_correct": 4,
+      "sell_count": 2,
+      "sell_correct": 1,
+      "hold_pct": 0.0,
+      "avg_latency": 0.13
+    }
+  ]
+}
