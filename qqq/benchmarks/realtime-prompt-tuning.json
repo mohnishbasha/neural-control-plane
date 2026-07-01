@@ -110,5 +110,7 @@
       "avg_latency": 0.16
     }
   ],
-  "avg_daily_accuracy": 0.5714
+  "avg_daily_accuracy": 0.5714,
+  "reverted": true,
+  "revert_reason": "Winning prefix (variant 5) overfit the 19-day validation slice and regressed the 35-day holdout: daily avg 60.7% -> 57.1%, smollm-1b weekly 75% -> 37.5%. PROMPT_PREFIX reverted to empty in strategy.py; benchmark_results.json restored to the few-shot-only (kept) state."
 }
