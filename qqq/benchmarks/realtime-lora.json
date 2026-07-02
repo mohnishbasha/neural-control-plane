@@ -1,0 +1,104 @@
+{
+  "technique": "LoRA fine-tuning (r=8, alpha=32, target=q_proj/v_proj, 4-bit nf4)",
+  "pipeline": "realtime",
+  "daily": [
+    {
+      "model": "qwen-3b",
+      "signal_type": "daily",
+      "total": 35,
+      "correct": 14,
+      "accuracy": 0.4,
+      "baseline_accuracy": 0.6,
+      "improved": false,
+      "status": "reverted",
+      "adapter_path": null,
+      "train_examples": 60,
+      "train_time_sec": 102.3,
+      "lora_config": {
+        "r": 8,
+        "alpha": 32,
+        "target_modules": [
+          "q_proj",
+          "v_proj"
+        ],
+        "quant": "4bit-nf4"
+      }
+    },
+    {
+      "model": "smollm-1b",
+      "signal_type": "daily",
+      "total": 35,
+      "correct": 17,
+      "accuracy": 0.4857,
+      "baseline_accuracy": 0.6286,
+      "improved": false,
+      "status": "reverted",
+      "adapter_path": null,
+      "train_examples": 60,
+      "train_time_sec": 61.5,
+      "lora_config": {
+        "r": 8,
+        "alpha": 32,
+        "target_modules": [
+          "q_proj",
+          "v_proj"
+        ],
+        "quant": "4bit-nf4"
+      }
+    },
+    {
+      "model": "gemma-2b",
+      "signal_type": "daily",
+      "total": 35,
+      "correct": 14,
+      "accuracy": 0.4,
+      "baseline_accuracy": 0.6,
+      "improved": false,
+      "status": "reverted",
+      "adapter_path": null,
+      "train_examples": 60,
+      "train_time_sec": 93.3,
+      "lora_config": {
+        "r": 8,
+        "alpha": 32,
+        "target_modules": [
+          "q_proj",
+          "v_proj"
+        ],
+        "quant": "4bit-nf4"
+      }
+    },
+    {
+      "model": "falcon-3b",
+      "signal_type": "daily",
+      "total": 35,
+      "correct": 14,
+      "accuracy": 0.4,
+      "baseline_accuracy": 0.6,
+      "improved": false,
+      "status": "reverted",
+      "adapter_path": null,
+      "train_examples": 60,
+      "train_time_sec": 94.2,
+      "lora_config": {
+        "r": 8,
+        "alpha": 32,
+        "target_modules": [
+          "q_proj",
+          "v_proj"
+        ],
+        "quant": "4bit-nf4"
+      }
+    }
+  ],
+  "avg_daily_accuracy_all_lora_attempts": 0.4214,
+  "avg_daily_accuracy_baseline": 0.6071,
+  "avg_daily_accuracy_after_keep_revert": 0.6071,
+  "kept_models": [],
+  "reverted_models": [
+    "qwen-3b",
+    "smollm-1b",
+    "gemma-2b",
+    "falcon-3b"
+  ]
+}
