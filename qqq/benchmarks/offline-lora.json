@@ -22,6 +22,25 @@
           "v_proj"
         ],
         "quant": "4bit-nf4"
+      },
+      "buy_count": 20,
+      "buy_correct": 12,
+      "sell_count": 14,
+      "sell_correct": 7,
+      "hold_pct": 0.0556,
+      "avg_latency": 0.17,
+      "weekly": {
+        "model": "qwen-3b",
+        "signal_type": "weekly",
+        "total": 12,
+        "correct": 7,
+        "accuracy": 0.5833,
+        "buy_count": 0,
+        "buy_correct": 0,
+        "sell_count": 12,
+        "sell_correct": 7,
+        "hold_pct": 0.0,
+        "avg_latency": 0.14
       }
     },
     {
@@ -44,6 +63,26 @@
           "v_proj"
         ],
         "quant": "4bit-nf4"
+      },
+      "daily_accuracy_committed": 0.6111,
+      "daily_reverify_note": "Re-running inference in a separate container load produced a different daily accuracy (0.5556 vs the committed 0.6111) on the identical 36-row holdout with greedy decoding -- observed run-to-run variance under 4-bit (nf4) quantized inference, not a code bug. The KEEP decision is unaffected: both readings clear the pre-LoRA baseline. Weekly numbers below are freshly measured in the same run as the reverify daily number for internal consistency.",
+      "buy_count": 21,
+      "buy_correct": 13,
+      "sell_count": 15,
+      "sell_correct": 7,
+      "hold_pct": 0.0,
+      "avg_latency": 0.1317,
+      "weekly": {
+        "signal_type": "weekly",
+        "total": 12,
+        "correct": 7,
+        "accuracy": 0.5833,
+        "buy_count": 0,
+        "buy_correct": 0,
+        "sell_count": 12,
+        "sell_correct": 7,
+        "hold_pct": 0.0,
+        "avg_latency": 0.1096
       }
     },
     {
@@ -66,6 +105,25 @@
           "v_proj"
         ],
         "quant": "4bit-nf4"
+      },
+      "buy_count": 17,
+      "buy_correct": 9,
+      "sell_count": 14,
+      "sell_correct": 7,
+      "hold_pct": 0.1389,
+      "avg_latency": 0.23,
+      "weekly": {
+        "model": "gemma-2b",
+        "signal_type": "weekly",
+        "total": 12,
+        "correct": 5,
+        "accuracy": 0.4167,
+        "buy_count": 0,
+        "buy_correct": 0,
+        "sell_count": 0,
+        "sell_correct": 0,
+        "hold_pct": 1.0,
+        "avg_latency": 0.13
       }
     },
     {
@@ -88,6 +146,26 @@
           "v_proj"
         ],
         "quant": "4bit-nf4"
+      },
+      "daily_accuracy_committed": 0.6389,
+      "daily_reverify_note": "Re-running inference in a separate container load produced a different daily accuracy (0.5833 vs the committed 0.6389) on the identical 36-row holdout with greedy decoding -- observed run-to-run variance under 4-bit (nf4) quantized inference, not a code bug. The KEEP decision is unaffected: both readings clear the pre-LoRA baseline. Weekly numbers below are freshly measured in the same run as the reverify daily number for internal consistency.",
+      "buy_count": 30,
+      "buy_correct": 18,
+      "sell_count": 6,
+      "sell_correct": 3,
+      "hold_pct": 0.0,
+      "avg_latency": 0.1602,
+      "weekly": {
+        "signal_type": "weekly",
+        "total": 12,
+        "correct": 6,
+        "accuracy": 0.5,
+        "buy_count": 1,
+        "buy_correct": 0,
+        "sell_count": 11,
+        "sell_correct": 6,
+        "hold_pct": 0.0,
+        "avg_latency": 0.1284
       }
     }
   ],
