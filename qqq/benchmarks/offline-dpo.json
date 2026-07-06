@@ -157,5 +157,58 @@
         "raw": "HOLD"
       }
     ]
+  },
+  {
+    "model": "falcon-3b",
+    "pipeline": "offline",
+    "technique": "DPO",
+    "dpo_start": "kept-adapter",
+    "baseline_accuracy": 0.639,
+    "dpo_accuracy": 0.4167,
+    "improved": false,
+    "status": "reverted",
+    "holdout_total": 36,
+    "holdout_correct": 15,
+    "dpo_pairs": 9,
+    "train_time_sec": 20.3,
+    "eval_time_sec": 8.9,
+    "adapter_path": null,
+    "dpo_config": {
+      "beta": 0.1,
+      "epochs": 3,
+      "quant": "4bit-nf4"
+    },
+    "rows_sample": [
+      {
+        "date": "2026-03-10",
+        "pred": "SELL",
+        "actual": "UP",
+        "raw": "SELL"
+      },
+      {
+        "date": "2026-03-11",
+        "pred": "SELL",
+        "actual": "DOWN",
+        "raw": "SELL"
+      },
+      {
+        "date": "2026-03-12",
+        "pred": "SELL",
+        "actual": "UP",
+        "raw": "SELL"
+      },
+      {
+        "date": "2026-03-13",
+        "pred": "SELL",
+        "actual": "UP",
+        "raw": "SELL"
+      },
+      {
+        "date": "2026-03-16",
+        "pred": "SELL",
+        "actual": "UP",
+        "raw": "SELL"
+      }
+    ]
   }
 ]
