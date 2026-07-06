@@ -1,0 +1,19 @@
+{
+  "date": "2026-07-06",
+  "signal_time": "12:00 ET",
+  "bars_used": 0,
+  "historical_days_context": 90,
+  "signals": {
+    "qwen-3b": "HOLD",
+    "smollm-1b": "SELL",
+    "gemma-2b": "HOLD",
+    "falcon-3b": "BUY"
+  },
+  "indicators_summary": {
+    "rsi": 49.36,
+    "macd_signal": "bearish",
+    "ema_trend": "above",
+    "vix_level": 17.9,
+    "morning_direction": "N/A"
+  }
+}
