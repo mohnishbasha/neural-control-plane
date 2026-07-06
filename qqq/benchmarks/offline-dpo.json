@@ -51,5 +51,58 @@
         "raw": "HOLD"
       }
     ]
+  },
+  {
+    "model": "smollm-1b",
+    "pipeline": "offline",
+    "technique": "DPO",
+    "dpo_start": "kept-adapter",
+    "baseline_accuracy": 0.556,
+    "dpo_accuracy": 0.6111,
+    "improved": true,
+    "status": "kept",
+    "holdout_total": 36,
+    "holdout_correct": 22,
+    "dpo_pairs": 10,
+    "train_time_sec": 14.0,
+    "eval_time_sec": 9.1,
+    "adapter_path": "/workspace/adapters/smollm-1b-offline-dpo",
+    "dpo_config": {
+      "beta": 0.1,
+      "epochs": 3,
+      "quant": "4bit-nf4"
+    },
+    "rows_sample": [
+      {
+        "date": "2026-03-10",
+        "pred": "BUY",
+        "actual": "UP",
+        "raw": "BUY"
+      },
+      {
+        "date": "2026-03-11",
+        "pred": "BUY",
+        "actual": "DOWN",
+        "raw": "BUY"
+      },
+      {
+        "date": "2026-03-12",
+        "pred": "BUY",
+        "actual": "UP",
+        "raw": "BUY"
+      },
+      {
+        "date": "2026-03-13",
+        "pred": "BUY",
+        "actual": "UP",
+        "raw": "BUY"
+      },
+      {
+        "date": "2026-03-16",
+        "pred": "BUY",
+        "actual": "UP",
+        "raw": "BUY"
+      }
+    ]
   }
 ]
