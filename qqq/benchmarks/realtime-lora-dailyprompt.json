@@ -53,5 +53,60 @@
         "raw": "BUY"
       }
     ]
+  },
+  {
+    "model": "smollm-1b",
+    "pipeline": "realtime",
+    "baseline_accuracy": 0.6286,
+    "lora_accuracy": 0.5,
+    "improved": false,
+    "status": "reverted",
+    "holdout_total": 30,
+    "holdout_correct": 15,
+    "train_examples": 94,
+    "train_time_sec": 96.6,
+    "eval_time_sec": 9.9,
+    "adapter_path": null,
+    "lora_config": {
+      "r": 8,
+      "alpha": 32,
+      "target_modules": [
+        "q_proj",
+        "v_proj"
+      ],
+      "quant": "4bit-nf4"
+    },
+    "rows_sample": [
+      {
+        "date": "2026-05-11",
+        "pred": "BUY",
+        "actual": "UP",
+        "raw": "BUY"
+      },
+      {
+        "date": "2026-05-12",
+        "pred": "BUY",
+        "actual": "DOWN",
+        "raw": "BUY"
+      },
+      {
+        "date": "2026-05-13",
+        "pred": "BUY",
+        "actual": "UP",
+        "raw": "BUY"
+      },
+      {
+        "date": "2026-05-14",
+        "pred": "BUY",
+        "actual": "UP",
+        "raw": "BUY"
+      },
+      {
+        "date": "2026-05-15",
+        "pred": "BUY",
+        "actual": "DOWN",
+        "raw": "BUY"
+      }
+    ]
   }
 ]
