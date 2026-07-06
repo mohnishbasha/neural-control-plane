@@ -157,5 +157,58 @@
         "raw": "SELL"
       }
     ]
+  },
+  {
+    "model": "falcon-3b",
+    "pipeline": "realtime",
+    "technique": "DPO",
+    "dpo_start": "base-model",
+    "baseline_accuracy": 0.6,
+    "dpo_accuracy": 0.3667,
+    "improved": false,
+    "status": "reverted",
+    "holdout_total": 30,
+    "holdout_correct": 11,
+    "dpo_pairs": 9,
+    "train_time_sec": 30.8,
+    "eval_time_sec": 11.5,
+    "adapter_path": null,
+    "dpo_config": {
+      "beta": 0.1,
+      "epochs": 3,
+      "quant": "4bit-nf4"
+    },
+    "rows_sample": [
+      {
+        "date": "2026-05-11",
+        "pred": null,
+        "actual": "UP",
+        "raw": "Given the bullish signals"
+      },
+      {
+        "date": "2026-05-12",
+        "pred": null,
+        "actual": "DOWN",
+        "raw": "Given the bullish signals"
+      },
+      {
+        "date": "2026-05-13",
+        "pred": "SELL",
+        "actual": "UP",
+        "raw": "SELL"
+      },
+      {
+        "date": "2026-05-14",
+        "pred": null,
+        "actual": "UP",
+        "raw": "Given the bullish signals"
+      },
+      {
+        "date": "2026-05-15",
+        "pred": null,
+        "actual": "DOWN",
+        "raw": "Given the bullish signals"
+      }
+    ]
   }
 ]
