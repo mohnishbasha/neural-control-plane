@@ -1,0 +1,57 @@
+[
+  {
+    "model": "qwen-3b",
+    "pipeline": "realtime",
+    "baseline_accuracy": 0.6,
+    "lora_accuracy": 0.5,
+    "improved": false,
+    "status": "reverted",
+    "holdout_total": 30,
+    "holdout_correct": 15,
+    "train_examples": 94,
+    "train_time_sec": 161.3,
+    "eval_time_sec": 10.6,
+    "adapter_path": null,
+    "lora_config": {
+      "r": 8,
+      "alpha": 32,
+      "target_modules": [
+        "q_proj",
+        "v_proj"
+      ],
+      "quant": "4bit-nf4"
+    },
+    "rows_sample": [
+      {
+        "date": "2026-05-11",
+        "pred": "BUY",
+        "actual": "UP",
+        "raw": "BUY"
+      },
+      {
+        "date": "2026-05-12",
+        "pred": "BUY",
+        "actual": "DOWN",
+        "raw": "BUY"
+      },
+      {
+        "date": "2026-05-13",
+        "pred": "BUY",
+        "actual": "UP",
+        "raw": "BUY"
+      },
+      {
+        "date": "2026-05-14",
+        "pred": "BUY",
+        "actual": "UP",
+        "raw": "BUY"
+      },
+      {
+        "date": "2026-05-15",
+        "pred": "BUY",
+        "actual": "DOWN",
+        "raw": "BUY"
+      }
+    ]
+  }
+]
