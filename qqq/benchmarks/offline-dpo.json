@@ -104,5 +104,58 @@
         "raw": "BUY"
       }
     ]
+  },
+  {
+    "model": "gemma-2b",
+    "pipeline": "offline",
+    "technique": "DPO",
+    "dpo_start": "base-model",
+    "baseline_accuracy": 0.583,
+    "dpo_accuracy": 0.5833,
+    "improved": true,
+    "status": "kept",
+    "holdout_total": 36,
+    "holdout_correct": 21,
+    "dpo_pairs": 10,
+    "train_time_sec": 42.2,
+    "eval_time_sec": 22.1,
+    "adapter_path": "/workspace/adapters/gemma-2b-offline-dpo",
+    "dpo_config": {
+      "beta": 0.1,
+      "epochs": 3,
+      "quant": "4bit-nf4"
+    },
+    "rows_sample": [
+      {
+        "date": "2026-03-10",
+        "pred": "HOLD",
+        "actual": "UP",
+        "raw": "HOLD"
+      },
+      {
+        "date": "2026-03-11",
+        "pred": "HOLD",
+        "actual": "DOWN",
+        "raw": "HOLD"
+      },
+      {
+        "date": "2026-03-12",
+        "pred": "HOLD",
+        "actual": "UP",
+        "raw": "HOLD"
+      },
+      {
+        "date": "2026-03-13",
+        "pred": "HOLD",
+        "actual": "UP",
+        "raw": "HOLD"
+      },
+      {
+        "date": "2026-03-16",
+        "pred": "HOLD",
+        "actual": "UP",
+        "raw": "HOLD"
+      }
+    ]
   }
 ]
