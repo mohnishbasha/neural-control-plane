@@ -104,5 +104,58 @@
         "raw": "Respond with exactly"
       }
     ]
+  },
+  {
+    "model": "gemma-2b",
+    "pipeline": "realtime",
+    "technique": "DPO",
+    "dpo_start": "base-model",
+    "baseline_accuracy": 0.6,
+    "dpo_accuracy": 0.5,
+    "improved": false,
+    "status": "reverted",
+    "holdout_total": 30,
+    "holdout_correct": 15,
+    "dpo_pairs": 10,
+    "train_time_sec": 37.2,
+    "eval_time_sec": 17.1,
+    "adapter_path": null,
+    "dpo_config": {
+      "beta": 0.1,
+      "epochs": 3,
+      "quant": "4bit-nf4"
+    },
+    "rows_sample": [
+      {
+        "date": "2026-05-11",
+        "pred": "SELL",
+        "actual": "UP",
+        "raw": "SELL"
+      },
+      {
+        "date": "2026-05-12",
+        "pred": "SELL",
+        "actual": "DOWN",
+        "raw": "SELL"
+      },
+      {
+        "date": "2026-05-13",
+        "pred": "SELL",
+        "actual": "UP",
+        "raw": "SELL"
+      },
+      {
+        "date": "2026-05-14",
+        "pred": "SELL",
+        "actual": "UP",
+        "raw": "SELL"
+      },
+      {
+        "date": "2026-05-15",
+        "pred": "SELL",
+        "actual": "DOWN",
+        "raw": "SELL"
+      }
+    ]
   }
 ]
