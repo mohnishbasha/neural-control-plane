@@ -53,5 +53,60 @@
         "raw": "BUY"
       }
     ]
+  },
+  {
+    "model": "smollm-1b",
+    "pipeline": "realtime",
+    "baseline_accuracy": 0.6286,
+    "lora_accuracy": 0.4688,
+    "improved": false,
+    "status": "reverted",
+    "holdout_total": 32,
+    "holdout_correct": 15,
+    "train_examples": 89,
+    "train_time_sec": 235.8,
+    "eval_time_sec": 110.3,
+    "adapter_path": null,
+    "lora_config": {
+      "r": 8,
+      "alpha": 32,
+      "target_modules": [
+        "q_proj",
+        "v_proj"
+      ],
+      "quant": "4bit-nf4"
+    },
+    "rows_sample": [
+      {
+        "date": "2026-05-04",
+        "pred": "SELL",
+        "actual": "DOWN",
+        "raw": "SELL"
+      },
+      {
+        "date": "2026-05-05",
+        "pred": "SELL",
+        "actual": "UP",
+        "raw": "SELL"
+      },
+      {
+        "date": "2026-05-06",
+        "pred": "SELL",
+        "actual": "UP",
+        "raw": "SELL"
+      },
+      {
+        "date": "2026-05-07",
+        "pred": "SELL",
+        "actual": "DOWN",
+        "raw": "SELL"
+      },
+      {
+        "date": "2026-05-08",
+        "pred": "SELL",
+        "actual": "UP",
+        "raw": "SELL"
+      }
+    ]
   }
 ]
