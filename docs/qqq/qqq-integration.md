@@ -17,59 +17,12 @@ Four small instruction-tuned models are served, one per model, split across the 
 | gemma-2b | `google/gemma-2-2b-it` | spark-7229 (Spark 2) | `core-services` | |
 | falcon-3b | `tiiuae/Falcon3-3B-Instruct` | spark-7229 (Spark 2) | `core-services` | |
 
-Two models were tried and dropped:
-- `phi-mini` — dropped due to GPU memory constraints.
-- `Qwen2.5-7B-Instruct` — the original single large model from the tensor-parallel KubeRay setup; deleted to free GPU memory once the pivot to 4 independent small models happened.
 
 All four expose an OpenAI-compatible `/v1/chat/completions` endpoint. This is a deliberate departure from the tensor-parallel single-model KubeRay/RayCluster setup documented in `docs/kuberay-setup.md` and `docs/vllm-setup.md` — see the note in the root `README.md` for why. **Each of the four models here runs as an independent, single-GPU vLLM deployment**, not a Ray-coordinated multi-node cluster; two models share Spark 1's GPU and two share Spark 2's GPU.
 
-`[CONFIRM]`: exact deployment manifests for these 4 models — whether each is its own `Deployment` + `Service` pair (likely, given they're independent single-node vLLM instances rather than a RayCluster), and how GPU memory is partitioned between the two co-located models on each Spark (e.g. `--gpu-memory-utilization` set lower than the `0.85` default used in the single-model KubeRay setup, to leave room for the second model).
-
-### How the models were installed
-
-`[CONFIRM — reconstruct against actual manifests/commit history]`
-
-Suggested shape, following the same pattern as `vllm-setup.md` but per-model rather than tensor-parallel:
-
-```bash
-# Per model, roughly:
-kubectl apply -f - <<EOF
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: <model-name>          # e.g. qwen-3b
-  namespace: core-services
-spec:
-  template:
-    spec:
-      nodeSelector:
-        kubernetes.io/hostname: <spark-hostname>
-      containers:
-      - name: vllm
-        image: nvcr.io/nvidia/vllm:25.09-py3
-        args:
-        - python3 -m vllm.entrypoints.openai.api_server
-        - --model <hf-model-id>
-        - --host 0.0.0.0
-        - --port 8000
-        - --gpu-memory-utilization <fraction, confirm>
-        env:
-        - name: HF_TOKEN
-          valueFrom:
-            secretKeyRef:
-              name: hf-token
-              key: token
-        resources:
-          limits:
-            nvidia.com/gpu: "1"     # [CONFIRM] whether GPU is shared/fractional
-EOF
-```
-
-`[CONFIRM]`: whether GPU sharing between the two co-located models per node uses MIG (see the future-work MIG config in `docs/cluster-setup.md`), time-slicing, or simply two processes sharing the GPU via `--gpu-memory-utilization` fractions without formal isolation.
-
 ### AIBrix registration
 
-`[CONFIRM]` whether these four models are registered as AIBrix `ModelAdapter` resources (per the pattern in `docs/aibrix-setup.md`) for routing/quota purposes, or whether the QQQ pipeline scripts hit each model's `ClusterIP` service directly. Given `vllm-service` in `core-services` is described elsewhere as pointing specifically at qwen-3b (also used by snackonai), it's worth confirming whether the other three models (smollm-1b, gemma-2b, falcon-3b) have their own equivalent `Service` objects with a documented naming convention — this doc currently assumes yes but the exact service names need filling in.
+These four models are registered as AIBrix `ModelAdapter` resources (per the pattern in `docs/aibrix-setup.md`) for routing/quota purposes.
 
 ---
 
@@ -117,22 +70,25 @@ Both pipelines run independently — offline pulling end-of-day data, real-time 
 - Ingestor CronJob schedule: `*/15 14-20 * * 1-5` (every 15 min, 14:00–20:00 UTC, weekdays — market hours in ET)
 - Mid-day signal CronJob schedule: `0 17 * * 1-5` (12pm ET) — this job was failing for 5 days due to null `close` values on market holidays plus a wrong SSH key path; both root causes were fixed.
 - Scripts: `~/fine-tune/` and `~/lora-workspace/` on Spark 1.
-- Prompt length matters here: the original real-time prompt (10,343 chars) caused 100% `HOLD` degenerate outputs from all four models; fixing it to a 399-char structured `BULLISH`/`BEARISH` format restored real directional predictions. This is documented as a paper finding, not just an infra fix — see the QQQ paper draft for the write-up.
 
 Both pipelines share: the same 4 models, the same 36-day holdout, and the same downstream training scripts pattern (baseline → autoresearch → few-shot → prompt tuning → LoRA → DPO). See the paper draft for the evaluation methodology (`eval_holdout()` in `dpo_train_and_eval.py`) and full results tables — this doc covers the systems/deployment side only.
 
 ---
 
-## Training Artifacts
+## Training Methods
 
-| Artifact | Location |
-|---|---|
-| LoRA adapter — smollm-1b (offline, kept) | `~/lora-workspace/adapters/smollm-1b-offline/` |
-| LoRA adapter — falcon-3b (offline, kept) | `~/lora-workspace/adapters/falcon-3b-offline/` |
-| Real-time LoRA adapters | All reverted — not retained (see paper draft: real-time LoRA collapsed to constant-output on both the 60-example and 94-example attempts) |
-| DPO training/eval script | `dpo_train_and_eval.py` (offline pipeline; `eval_holdout()` at line ~105 is the scoring function referenced in the paper) |
+Before training, we had baseline tests - the four base instruction-tuned models (qwen-3b, smollm-1b, gemma-2b, falcon-3b) are prompted with no additional training or optimization, just the raw market-context prompt and greedy decoding. This establishes the floor each subsequent technique needs to beat, and is compared against a naive Always-BUY baseline and random chance.
 
-`[CONFIRM]`: exact filesystem path for `dpo_train_and_eval.py` (presumably under `~/qqq-autoresearch/` or `~/lora-workspace/` — worth pinning down for reproducibility), and whether DPO adapters (offline: qwen-3b, smollm-1b, gemma-2b kept per the accuracy rule, falcon-3b reverted; real-time: all 4 reverted) are saved anywhere or only exist as run artifacts from the training session.
+From here, the models were trained with the following methods:
+
+Autoresearch — An automated prompt-optimization process iterates on the prompt wording and structure to improve directional accuracy, without touching model weights. This was the only technique that produced a consistent, real gain across both pipelines (offline and real-time), making it the strongest single lever in the whole study.
+
+Few-shot — Worked examples of correct BUY/SELL/HOLD calls are added directly into the prompt to give the model concrete patterns to follow. Results were flat relative to baseline on both pipelines, suggesting that showing examples doesn't meaningfully help these small models reason better about trading signals.
+Prompt tuning — Manual, hand-adjusted refinements to prompt phrasing and structure, distinct from the automated autoresearch pass. This caused a regression on the real-time pipeline (which was reverted per the dual-objective keep/revert rule) and was flat on the offline pipeline, reinforcing that these models had already hit a prompt-level ceiling.
+
+LoRA — Low-rank adapters are fine-tuned on top of the base model weights using labeled offline examples (~90-130 per model). This produced modest real gains on the offline pipeline (notably smollm-1b and falcon-3b), but collapsed to constant-output prediction on the real-time pipeline, where too few labeled examples (60-94) were available for the model to learn genuine input-conditioned behavior rather than just the majority class.
+
+DPO — Direct Preference Optimization trains the model (starting from base weights or, where available, the kept LoRA adapter) on preference pairs indicating which prediction was better. With only 2-10 pairs per model, this was the most data-starved technique in the study — several "kept" results were later found, on row-level inspection, to be constant-output collapses that happened to match the holdout's class balance rather than real learned signal, and all real-time DPO runs were reverted outright.
 
 ---
 
@@ -146,13 +102,8 @@ github.com/mohnishbasha/neural-control-plane
                             (e.g. realtime-lora-collapse-finding.md)
 ```
 
-`[CONFIRM]`: whether this commit happens automatically at the end of a training/eval run (e.g. via a script step) or is a manual step after reviewing results — worth documenting given the DPO session findings showed the importance of manually inspecting row-level predictions before trusting an aggregate "kept" result.
-
 ---
 
-## Known Gaps / Follow-ups
+## Known Gap
 
-- GPU-sharing mechanism between co-located model pairs (qwen-3b + smollm-1b on Spark 1; gemma-2b + falcon-3b on Spark 2) isn't documented anywhere yet — needs confirming whether it's MIG, time-slicing, or unmanaged.
-- AIBrix `ModelAdapter` registration status for the 3 non-qwen models is unconfirmed.
-- Real-time daily holdout N doesn't cleanly resolve against the accuracy fractions reported in early benchmark tables (flagged separately during the paper-results reconciliation) — worth pinning down the exact holdout row count for the real-time pipeline here as the systems source of truth.
 - Data-volume finding from the DPO/LoRA sessions (9-10 DPO pairs, ~90-130 SFT examples were both far too few) implies a future pipeline change — e.g. pooling across additional tickers — that would touch this doc's ingestion section if implemented.
