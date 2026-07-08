@@ -47,7 +47,7 @@ Read these in order when setting up the cluster from scratch.
 
 | Document | What it covers |
 |------|----------------|
-| [docs/snackonai/snackonai-integration.md](docs/snackonai/snackonai-integration.md) | snackonai Telegram research bot: agent pipeline, Dockerization, Helm deployment, how it was integrated into the cluster |
+| [docs/snack/snackonai-integration.md](docs/snackonai/snackonai-integration.md) | snackonai Telegram research bot: agent pipeline, Dockerization, Helm deployment, how it was integrated into the cluster |
 | [docs/qqq/qqq-integration.md](docs/qqq/qqq-integration.md) | QQQ trading signal pipelines: models used, offline/real-time architecture, how each model was installed and registered, training/eval integration |
 
 ---
