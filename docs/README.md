@@ -35,7 +35,7 @@ Read these in order when setting up the cluster from scratch.
 | 6 | [aibrix-setup.md](docs/aibrix-setup.md) | AIBrix routing layer, ModelAdapters, multi-namespace isolation |
 | 7 | [cluster-setup.md](docs/cluster-setup.md) | Full cluster overview, monitoring stack, Grafana, GPU metrics |
 
-> **Note on KubeRay (Step 4) — not currently used in active research work.**
+> **Note on KubeRay — not currently used in active research work.**
 > The QQQ pipelines and snackonai run against independent per-model vLLM deployments, one small model per Spark (qwen-3b / smollm-1b on Spark 1, gemma-2b / falcon-3b on Spark 2 — see [`docs/qqq/qqq-integration.md`](docs/qqq/qqq-integration.md)), not a single Ray-coordinated cluster. KubeRay and the tensor-parallel RayCluster setup in `kuberay-setup.md` and `vllm-setup.md` are kept in this repo as a reference setup path, not as the currently-deployed architecture.
 >
 > **When you'd actually reach for this instead:**
