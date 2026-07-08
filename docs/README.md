@@ -16,7 +16,7 @@ AI research platform running on a 2-node NVIDIA DGX Spark cluster. This repo con
 
 ## Documentation index
 
-Read these in order when setting up the cluster from scratch.
+Read these in order when setting up the cluster from scratch. See [system-architecture.md](docs/system-architecture.md) for the full architecture visualization. 
 
 ### Part 1 — Node setup
 
