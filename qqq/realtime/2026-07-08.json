@@ -1,0 +1,19 @@
+{
+  "date": "2026-07-08",
+  "signal_time": "12:00 ET",
+  "bars_used": 0,
+  "historical_days_context": 90,
+  "signals": {
+    "qwen-3b": "HOLD",
+    "smollm-1b": "SELL",
+    "gemma-2b": "ERROR: HTTPConnectionPool(host='gemma-2b-service.core-services.svc.cluster.local', port=8000): Max retries exceeded with url: /v1/chat/completions (Caused by NewConnectionError(\"HTTPConnection(host='gemma-2b-service.core-services.svc.cluster.local', port=8000): Failed to establish a new connection: [Errno 111] Connection refused\"))",
+    "falcon-3b": "ERROR: HTTPConnectionPool(host='falcon-3b-service.core-services.svc.cluster.local', port=8000): Max retries exceeded with url: /v1/chat/completions (Caused by NewConnectionError(\"HTTPConnection(host='falcon-3b-service.core-services.svc.cluster.local', port=8000): Failed to establish a new connection: [Errno 111] Connection refused\"))"
+  },
+  "indicators_summary": {
+    "rsi": 48.42,
+    "macd_signal": "bearish",
+    "ema_trend": "above",
+    "vix_level": 15.81,
+    "morning_direction": "N/A"
+  }
+}
