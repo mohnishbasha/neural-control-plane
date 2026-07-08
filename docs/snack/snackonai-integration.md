@@ -4,7 +4,11 @@
 
 snackonai is a Telegram research bot (`@SnackOnAiBot`) that runs as a 6-agent pipeline in the `snackonai` namespace, generating and publishing research write-ups from technical topics, then committing the output to GitHub.
 
-This document covers how the pipeline is packaged (Docker), deployed (Helm), and wired into the rest of the cluster. Several sections below are marked **`[CONFIRM]`** — fill in the exact values/commands from your actual Dockerfiles, Helm charts, and deployment history so this doc matches what's really running rather than the general shape of it.
+This document covers how the pipeline is packaged (Docker), deployed (Helm), and wired into the rest of the cluster.
+
+Each agent's code (or the pipeline as a whole, if it shares one codebase) gets packaged into a container image via a Dockerfile in the snackonai-composer repo — this bundles the Python runtime, whatever bot/orchestration libraries the agents use, and the application code itself, but deliberately leaves out secrets like the Telegram token, GitHub PAT, and LLM API keys. Those get built with docker build, tagged with a version, and pushed to a registry (something like GHCR or Docker Hub) so Kubernetes can pull them by name later — this is the same pattern used elsewhere in the cluster, like the nvcr.io/nvidia/vllm image referenced in vllm-setup.md.
+
+Helm comes in as the deployment layer on top of that. Instead of writing out raw Kubernetes YAML for every agent's Deployment, Service, and Secret, a Helm chart templates all of that and exposes the parts that change between environments — image tags, replica counts, which vLLM endpoint to hit, which LLM backend to use — as values in a values.yaml file. Running helm install snackonai ./helm/snackonai-composer -n snackonai -f values.yaml takes that chart, fills in the values, and applies the resulting manifests to the snackonai namespace in one shot. The secrets themselves (Telegram token, GitHub PAT, API keys) get created separately as Kubernetes Secrets ahead of time, and the chart just references them by name — mirroring how hf-token is handled for vLLM — so nothing sensitive ever lives in the chart or the image.
 
 ---
 
@@ -63,59 +67,10 @@ Model served: `Qwen2.5-3B-Instruct` (via the `vllm-service` ClusterIP — see `d
 | Value | Backend | Status |
 |---|---|---|
 | `local` | In-cluster vLLM (Qwen2.5-3B) | Active |
-| `large` | Together.ai (Qwen2.5-72B) | Pending — Together.ai API key not yet provisioned |
-| `claude` | Anthropic API (`claude-sonnet-4-6`) | Key available, not yet wired into `pipeline_runner.py` |
-
-Remaining work: `pipeline_runner.py` needs updating to run the pipeline twice per topic (once per configured backend) once both keys are live, producing two parallel articles per topic — one from the large open-weight model, one from Claude.
-
-`[CONFIRM]`: exact env var names, secret name/key holding the Anthropic and Together.ai API keys once provisioned, and how `pipeline_runner.py` selects/parallelizes the two runs.
+| `large` | Together.ai (Qwen2.5-72B) | Together.ai API key |
+| `claude` | Anthropic API (`claude-sonnet-4-6`) | Anthropic API key |
 
 ---
-
-## Dockerization
-
-`[CONFIRM — fill in per actual Dockerfile(s)]`
-
-Each agent (or the pipeline as a single image, depending on how it's structured) is built into a container image from the `snackonai-composer` repo.
-
-Suggested structure to document here once confirmed:
-
-- **Base image:** `[CONFIRM]` (e.g. `python:3.x-slim`, `nvcr.io/nvidia/...` if any agent needs GPU access directly rather than calling vLLM over HTTP)
-- **Build context / Dockerfile path:** `[CONFIRM]` — e.g. one Dockerfile per agent under `snackonai-composer/<agent>/Dockerfile`, or a single multi-stage Dockerfile
-- **Key dependencies baked into the image:** `[CONFIRM]` — Telegram bot library, GitHub API client, prompt/agent framework in use
-- **Image registry:** `[CONFIRM]` — where images are pushed (e.g. GHCR, Docker Hub, a private registry) and the naming convention used (`snackonai-composer-researcher:<tag>`, etc.)
-- **Build/push command:**
-  ```bash
-  # [CONFIRM] — example shape:
-  docker build -t <registry>/snackonai-composer-<agent>:<tag> .
-  docker push <registry>/snackonai-composer-<agent>:<tag>
-  ```
-- **Secrets baked in vs. injected at runtime:** confirm that the Telegram bot token, GitHub token, and LLM API keys are **not** baked into the image and are instead injected via Kubernetes Secrets (see Helm section below) — this should be true given the pattern used elsewhere in this repo (e.g. `hf-token` secret in `vllm-setup.md`), but worth explicitly verifying here since it's a common way secrets leak into image layers.
-
----
-
-## Helm Deployment
-
-`[CONFIRM — fill in per actual chart]`
-
-The pipeline is deployed into the `snackonai` namespace. Document here once confirmed:
-
-- **Chart location:** `[CONFIRM]` — e.g. `snackonai-composer/helm/` in the repo, or a chart published separately
-- **Release name / namespace:**
-  ```bash
-  # [CONFIRM] — example shape:
-  helm install snackonai ./helm/snackonai-composer \
-    --namespace snackonai \
-    --create-namespace \
-    -f values.yaml
-  ```
-- **Key values exposed in `values.yaml`:** `[CONFIRM]` — likely candidates based on the pipeline's needs:
-  - `vllm.endpoint` — pointing at `vllm-service.core-services.svc.cluster.local:8000`
-  - `telegram.botTokenSecretRef` — secret containing the Telegram bot token
-  - `github.tokenSecretRef` — secret containing the GitHub PAT used for commits
-  - `llmBackend` — `local` / `large` / `claude`, matching the `LLM_BACKEND` env var above
-  - `schedule` or `pollingInterval` — how often `composer-bot` checks for new topics
-- **Resource requests/limits per agent:** `[CONFIRM]` — none of the agents should need a GPU directly (they call vLLM over HTTP), so this is likely CPU/memory only; worth confirming no agent pod is unintentionally requesting `nvidia.com/gpu` and starving the QQQ/vLLM workloads for GPU scheduling.
 
 ### Verification
 
@@ -129,26 +84,3 @@ kubectl logs -n snackonai -l app=composer-bot --tail=50
 # Check most recent pipeline run's output landed in the repo
 # (confirm this against the actual GitHub push step / commit history)
 ```
-
----
-
-## How the Pipeline Was Integrated
-
-`[CONFIRM — reconstruct this section from actual deployment history / commit log]`
-
-Suggested outline to fill in:
-
-1. **Namespace creation** — `snackonai` namespace added alongside `core-services`, `qqq-data`, `fine-tune` (see root `README.md` namespace table).
-2. **Secrets provisioned** — Telegram bot token, GitHub PAT, and LLM backend API keys created as Kubernetes Secrets in the `snackonai` namespace (mirror the `hf-token` pattern from `vllm-setup.md`).
-3. **Model dependency** — confirmed `vllm-service` in `core-services` was reachable cluster-wide before wiring agents to it (no AIBrix ModelAdapter currently registered for this specific use — agents hit the raw `vllm-service` ClusterIP directly rather than going through AIBrix routing; `[CONFIRM]` whether this is intentional or a gap to close).
-4. **Agent pipeline evolution** — upgraded from a 3-agent pipeline (researcher → writer → Telegram) to the current 6-agent pipeline (added the MoE analyst and reflection-loop editor). `[CONFIRM]` date/commit of this upgrade and what specifically motivated the analyst/editor additions (likely: draft quality issues from the 3-agent version).
-5. **Deployment method** — `[CONFIRM]` whether this was deployed via `kubectl apply` initially and later Helm-ized, or Helm from the start.
-
----
-
-## Known Gaps / Follow-ups
-
-- Together.ai API key not yet provisioned — blocks the dual-backend (`large` mode) rollout.
-- `pipeline_runner.py` not yet updated to run twice per topic.
-- Confirm whether agents should route through AIBrix (for quota/isolation) rather than hitting `vllm-service` directly, especially once the dual-backend work adds external API calls that AIBrix isn't positioned to manage the same way as in-cluster vLLM.
-- This document's Docker/Helm sections need to be filled in against the actual `snackonai-composer` repo contents — right now they describe the expected shape based on how the rest of this cluster is set up, not verified specifics.
