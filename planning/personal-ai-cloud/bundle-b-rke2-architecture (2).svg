@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="820" viewBox="0 0 960 820" font-family="Helvetica, Arial, sans-serif">
+  <rect x="0" y="0" width="960" height="820" fill="#ffffff"/>
+  <rect x="0" y="0" width="960" height="60" fill="#0f172a"/>
+  <text x="24" y="30" fill="#ffffff" font-size="19" font-weight="bold">Bundle B: 2-node RKE2 cluster with GPUDirect RDMA</text>
+  <text x="24" y="50" fill="#94a3b8" font-size="13">spark-b1 + spark-b2, Cilium native routing + Multus, NCCL over RoCE v2</text>
+
+  <rect x="24" y="80" width="290" height="60" rx="8" fill="#f1f5f9" stroke="#64748b" stroke-width="1"/>
+  <text x="169" y="104" text-anchor="middle" font-size="14" font-weight="bold" fill="#0f172a">Ansible</text>
+  <text x="169" y="124" text-anchor="middle" font-size="12" fill="#475569">OS, NVIDIA stack, RKE2, RoCE config</text>
+
+  <rect x="334" y="80" width="290" height="60" rx="8" fill="#f1f5f9" stroke="#64748b" stroke-width="1"/>
+  <text x="479" y="104" text-anchor="middle" font-size="14" font-weight="bold" fill="#0f172a">Terraform (external only)</text>
+  <text x="479" y="124" text-anchor="middle" font-size="12" fill="#475569">Cloudflare DNS, Tailscale ACLs, buckets</text>
+
+  <rect x="644" y="80" width="292" height="60" rx="8" fill="#f1f5f9" stroke="#64748b" stroke-width="1"/>
+  <text x="790" y="104" text-anchor="middle" font-size="14" font-weight="bold" fill="#0f172a">Tailscale</text>
+  <text x="790" y="124" text-anchor="middle" font-size="12" fill="#475569">All remote access, SSH tailnet-only</text>
+
+  <rect x="24" y="160" width="912" height="560" rx="12" fill="#f8fafc" stroke="#475569" stroke-width="1.5"/>
+  <text x="44" y="188" font-size="15" font-weight="bold" fill="#0f172a">RKE2 cluster</text>
+
+  <rect x="48" y="204" width="430" height="66" rx="8" fill="#e2e8f0" stroke="#475569" stroke-width="1"/>
+  <text x="263" y="230" text-anchor="middle" font-size="14" font-weight="bold" fill="#0f172a">spark-b1: rke2 server</text>
+  <text x="263" y="252" text-anchor="middle" font-size="12" fill="#475569">etcd, GB10 Grace Blackwell, 128 GB unified</text>
+
+  <rect x="506" y="204" width="406" height="66" rx="8" fill="#e2e8f0" stroke="#475569" stroke-width="1"/>
+  <text x="709" y="230" text-anchor="middle" font-size="14" font-weight="bold" fill="#0f172a">spark-b2: rke2 agent</text>
+  <text x="709" y="252" text-anchor="middle" font-size="12" fill="#475569">GB10 Grace Blackwell, 128 GB unified</text>
+
+  <rect x="48" y="286" width="530" height="38" rx="6" fill="#e2e8f0" stroke="#64748b" stroke-width="1"/>
+  <text x="313" y="310" text-anchor="middle" font-size="13" fill="#0f172a">Cilium: native routing, kube-proxy replacement, LAN iface only</text>
+
+  <rect x="594" y="286" width="318" height="38" rx="6" fill="#d1fae5" stroke="#047857" stroke-width="1"/>
+  <text x="753" y="310" text-anchor="middle" font-size="13" fill="#065f46">Multus meta-CNI: rdma-net secondary iface</text>
+
+  <rect x="48" y="340" width="540" height="364" rx="10" fill="#ecfdf5" stroke="#047857" stroke-width="1.5"/>
+  <text x="68" y="366" font-size="14" font-weight="bold" fill="#065f46">ns: inference</text>
+
+  <rect x="68" y="380" width="500" height="42" rx="6" fill="#d1fae5" stroke="#047857" stroke-width="1"/>
+  <text x="318" y="406" text-anchor="middle" font-size="13" font-weight="bold" fill="#065f46">AIBrix: OpenAI-compatible gateway, routing, autoscaling</text>
+
+  <line x1="203" y1="422" x2="203" y2="452" stroke="#047857" stroke-width="1.5"/>
+  <polygon points="203,456 198,446 208,446" fill="#047857"/>
+  <line x1="450" y1="422" x2="450" y2="452" stroke="#047857" stroke-width="1.5"/>
+  <polygon points="450,456 445,446 455,446" fill="#047857"/>
+
+  <rect x="68" y="458" width="250" height="66" rx="6" fill="#ffffff" stroke="#047857" stroke-width="1"/>
+  <text x="193" y="482" text-anchor="middle" font-size="13" font-weight="bold" fill="#065f46">vLLM single-node</text>
+  <text x="193" y="502" text-anchor="middle" font-size="12" fill="#065f46">models up to 128 GB, GPU limit 1</text>
+
+  <rect x="338" y="458" width="230" height="66" rx="6" fill="#ffffff" stroke="#047857" stroke-width="1"/>
+  <text x="453" y="482" text-anchor="middle" font-size="13" font-weight="bold" fill="#065f46">LWS multi-node group</text>
+  <text x="453" y="502" text-anchor="middle" font-size="12" fill="#065f46">tensor parallel size 2</text>
+
+  <line x1="398" y1="524" x2="398" y2="546" stroke="#047857" stroke-width="1.5"/>
+  <line x1="508" y1="524" x2="508" y2="546" stroke="#047857" stroke-width="1.5"/>
+
+  <rect x="338" y="548" width="110" height="64" rx="6" fill="#d1fae5" stroke="#047857" stroke-width="1"/>
+  <text x="393" y="570" text-anchor="middle" font-size="12" font-weight="bold" fill="#065f46">leader pod</text>
+  <text x="393" y="588" text-anchor="middle" font-size="11" fill="#065f46">spark-b1</text>
+  <text x="393" y="604" text-anchor="middle" font-size="11" fill="#065f46">+ rdma-net</text>
+
+  <rect x="458" y="548" width="110" height="64" rx="6" fill="#d1fae5" stroke="#047857" stroke-width="1"/>
+  <text x="513" y="570" text-anchor="middle" font-size="12" font-weight="bold" fill="#065f46">worker pod</text>
+  <text x="513" y="588" text-anchor="middle" font-size="11" fill="#065f46">spark-b2</text>
+  <text x="513" y="604" text-anchor="middle" font-size="11" fill="#065f46">+ rdma-net</text>
+
+  <text x="68" y="640" font-size="12" fill="#065f46">annotation k8s.v1.cni.cncf.io/networks: rdma-net, resource rdma/rdma_shared_device_a</text>
+  <text x="68" y="660" font-size="12" fill="#065f46">NCCL_IB_HCA + GID index 3 (RoCE v2), IPC_LOCK capability</text>
+  <text x="68" y="680" font-size="12" fill="#065f46">acceptance test: NCCL log shows NET/IB, not NET/Socket</text>
+
+  <rect x="608" y="340" width="304" height="84" rx="10" fill="#d1fae5" stroke="#047857" stroke-width="1.5"/>
+  <text x="628" y="366" font-size="14" font-weight="bold" fill="#065f46">NVIDIA network operator</text>
+  <text x="628" y="390" font-size="12" fill="#065f46">NicClusterPolicy, rdma shared device</text>
+  <text x="628" y="410" font-size="12" fill="#065f46">plugin, whereabouts IPAM on 10.20.1.0/24</text>
+
+  <rect x="608" y="436" width="304" height="128" rx="10" fill="#ede9fe" stroke="#6d28d9" stroke-width="1.5"/>
+  <text x="628" y="462" font-size="14" font-weight="bold" fill="#4c1d95">ns: monitoring</text>
+  <text x="628" y="486" font-size="12" fill="#4c1d95">LGTM stack + OTel Collector + DCGM</text>
+  <text x="628" y="506" font-size="12" fill="#4c1d95">RoCE counters: pause frames, ECN marks</text>
+  <text x="628" y="526" font-size="12" fill="#4c1d95">Hubble flow visibility (eBPF)</text>
+  <text x="628" y="546" font-size="12" fill="#4c1d95">NCCL debug logs to Loki at bring-up</text>
+
+  <rect x="608" y="576" width="304" height="60" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
+  <text x="628" y="600" font-size="14" font-weight="bold" fill="#78350f">ns: storage</text>
+  <text x="628" y="622" font-size="12" fill="#78350f">NFS HF cache from spark-b1, shared weights</text>
+
+  <rect x="608" y="648" width="304" height="60" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+  <text x="628" y="672" font-size="14" font-weight="bold" fill="#1e3a8a">ns: gitops</text>
+  <text x="628" y="694" font-size="12" fill="#1e3a8a">Flux CD, path clusters/bundle-b-rke2, SOPS</text>
+
+  <rect x="24" y="740" width="912" height="56" rx="8" fill="#d1fae5" stroke="#047857" stroke-width="1.5"/>
+  <text x="480" y="764" text-anchor="middle" font-size="14" font-weight="bold" fill="#065f46">ConnectX-7 200 GbE point-to-point (spark-b1 to spark-b2)</text>
+  <text x="480" y="784" text-anchor="middle" font-size="12" fill="#047857">NCCL over GPUDirect RDMA, RoCE v2 with PFC + ECN + MTU 9000, approx 2-5 us per all-reduce</text>
+</svg>
