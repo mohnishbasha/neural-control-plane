@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="780" viewBox="0 0 960 780" font-family="Helvetica, Arial, sans-serif">
+  <rect x="0" y="0" width="960" height="780" fill="#ffffff"/>
+  <rect x="0" y="0" width="960" height="60" fill="#0f172a"/>
+  <text x="24" y="30" fill="#ffffff" font-size="19" font-weight="bold">Bundle A: 2-node k3s cluster</text>
+  <text x="24" y="50" fill="#94a3b8" font-size="13">spark-a1 + spark-a2, Flannel VXLAN, NCCL over TCP (baseline)</text>
+
+  <rect x="24" y="80" width="290" height="60" rx="8" fill="#f1f5f9" stroke="#64748b" stroke-width="1"/>
+  <text x="169" y="104" text-anchor="middle" font-size="14" font-weight="bold" fill="#0f172a">Ansible</text>
+  <text x="169" y="124" text-anchor="middle" font-size="12" fill="#475569">OS baseline, NVIDIA stack, k3s install</text>
+
+  <rect x="334" y="80" width="290" height="60" rx="8" fill="#f1f5f9" stroke="#64748b" stroke-width="1"/>
+  <text x="479" y="104" text-anchor="middle" font-size="14" font-weight="bold" fill="#0f172a">Terraform (external only)</text>
+  <text x="479" y="124" text-anchor="middle" font-size="12" fill="#475569">Cloudflare DNS, Tailscale ACLs, buckets</text>
+
+  <rect x="644" y="80" width="292" height="60" rx="8" fill="#f1f5f9" stroke="#64748b" stroke-width="1"/>
+  <text x="790" y="104" text-anchor="middle" font-size="14" font-weight="bold" fill="#0f172a">Tailscale</text>
+  <text x="790" y="124" text-anchor="middle" font-size="12" fill="#475569">All remote access, SSH tailnet-only</text>
+
+  <rect x="24" y="160" width="912" height="520" rx="12" fill="#f8fafc" stroke="#475569" stroke-width="1.5"/>
+  <text x="44" y="188" font-size="15" font-weight="bold" fill="#0f172a">k3s cluster</text>
+
+  <rect x="48" y="204" width="430" height="66" rx="8" fill="#e2e8f0" stroke="#475569" stroke-width="1"/>
+  <text x="263" y="230" text-anchor="middle" font-size="14" font-weight="bold" fill="#0f172a">spark-a1: k3s server</text>
+  <text x="263" y="252" text-anchor="middle" font-size="12" fill="#475569">embedded etcd, GB10 Grace Blackwell, 128 GB unified</text>
+
+  <rect x="506" y="204" width="406" height="66" rx="8" fill="#e2e8f0" stroke="#475569" stroke-width="1"/>
+  <text x="709" y="230" text-anchor="middle" font-size="14" font-weight="bold" fill="#0f172a">spark-a2: k3s agent</text>
+  <text x="709" y="252" text-anchor="middle" font-size="12" fill="#475569">GB10 Grace Blackwell, 128 GB unified</text>
+
+  <rect x="48" y="286" width="864" height="38" rx="6" fill="#e2e8f0" stroke="#64748b" stroke-width="1"/>
+  <text x="480" y="310" text-anchor="middle" font-size="13" fill="#0f172a">Flannel VXLAN CNI on LAN interface (pod network only, ConnectX link excluded)</text>
+
+  <rect x="48" y="340" width="540" height="324" rx="10" fill="#ecfdf5" stroke="#047857" stroke-width="1.5"/>
+  <text x="68" y="366" font-size="14" font-weight="bold" fill="#065f46">ns: inference</text>
+
+  <rect x="68" y="380" width="500" height="42" rx="6" fill="#d1fae5" stroke="#047857" stroke-width="1"/>
+  <text x="318" y="406" text-anchor="middle" font-size="13" font-weight="bold" fill="#065f46">AIBrix: OpenAI-compatible gateway, routing, autoscaling</text>
+
+  <line x1="203" y1="422" x2="203" y2="452" stroke="#047857" stroke-width="1.5"/>
+  <polygon points="203,456 198,446 208,446" fill="#047857"/>
+  <line x1="450" y1="422" x2="450" y2="452" stroke="#047857" stroke-width="1.5"/>
+  <polygon points="450,456 445,446 455,446" fill="#047857"/>
+
+  <rect x="68" y="458" width="250" height="66" rx="6" fill="#ffffff" stroke="#047857" stroke-width="1"/>
+  <text x="193" y="482" text-anchor="middle" font-size="13" font-weight="bold" fill="#065f46">vLLM single-node</text>
+  <text x="193" y="502" text-anchor="middle" font-size="12" fill="#065f46">models up to 128 GB, GPU limit 1</text>
+
+  <rect x="338" y="458" width="230" height="66" rx="6" fill="#ffffff" stroke="#047857" stroke-width="1"/>
+  <text x="453" y="482" text-anchor="middle" font-size="13" font-weight="bold" fill="#065f46">LWS multi-node group</text>
+  <text x="453" y="502" text-anchor="middle" font-size="12" fill="#065f46">tensor parallel size 2</text>
+
+  <line x1="398" y1="524" x2="398" y2="546" stroke="#047857" stroke-width="1.5"/>
+  <line x1="508" y1="524" x2="508" y2="546" stroke="#047857" stroke-width="1.5"/>
+
+  <rect x="338" y="548" width="110" height="52" rx="6" fill="#d1fae5" stroke="#047857" stroke-width="1"/>
+  <text x="393" y="570" text-anchor="middle" font-size="12" font-weight="bold" fill="#065f46">leader pod</text>
+  <text x="393" y="588" text-anchor="middle" font-size="11" fill="#065f46">spark-a1</text>
+
+  <rect x="458" y="548" width="110" height="52" rx="6" fill="#d1fae5" stroke="#047857" stroke-width="1"/>
+  <text x="513" y="570" text-anchor="middle" font-size="12" font-weight="bold" fill="#065f46">worker pod</text>
+  <text x="513" y="588" text-anchor="middle" font-size="11" fill="#065f46">spark-a2</text>
+
+  <text x="68" y="628" font-size="12" fill="#065f46">hostNetwork: true, NCCL_SOCKET_IFNAME pinned to ConnectX interface</text>
+  <text x="68" y="648" font-size="12" fill="#065f46">image: nvcr.io/nvidia/vllm-openai:latest (only viable ARM64 image)</text>
+
+  <rect x="608" y="340" width="304" height="140" rx="10" fill="#ede9fe" stroke="#6d28d9" stroke-width="1.5"/>
+  <text x="628" y="366" font-size="14" font-weight="bold" fill="#4c1d95">ns: monitoring</text>
+  <text x="628" y="392" font-size="12" fill="#4c1d95">kube-prometheus-stack (Prom + Grafana)</text>
+  <text x="628" y="412" font-size="12" fill="#4c1d95">Loki, Tempo, OTel Collector funnel</text>
+  <text x="628" y="432" font-size="12" fill="#4c1d95">dcgm-exporter on both nodes</text>
+  <text x="628" y="452" font-size="12" fill="#4c1d95">watch: GPU stall during all-reduce</text>
+
+  <rect x="608" y="496" width="304" height="76" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
+  <text x="628" y="522" font-size="14" font-weight="bold" fill="#78350f">ns: storage</text>
+  <text x="628" y="546" font-size="12" fill="#78350f">NFS HF cache exported from spark-a1,</text>
+  <text x="628" y="564" font-size="12" fill="#78350f">mounted on spark-a2 (shared weights)</text>
+
+  <rect x="608" y="588" width="304" height="76" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+  <text x="628" y="614" font-size="14" font-weight="bold" fill="#1e3a8a">ns: gitops</text>
+  <text x="628" y="638" font-size="12" fill="#1e3a8a">Flux CD from spark-fleet repo</text>
+  <text x="628" y="656" font-size="12" fill="#1e3a8a">path clusters/bundle-a-k3s, SOPS + age</text>
+
+  <rect x="24" y="700" width="912" height="56" rx="8" fill="#ffe4e6" stroke="#be123c" stroke-width="1.5"/>
+  <text x="480" y="724" text-anchor="middle" font-size="14" font-weight="bold" fill="#881337">ConnectX-7 200 GbE point-to-point (spark-a1 to spark-a2)</text>
+  <text x="480" y="744" text-anchor="middle" font-size="12" fill="#9f1239">NCCL over TCP sockets, approx 50-100 us per all-reduce: the baseline for the bake-off</text>
+</svg>
