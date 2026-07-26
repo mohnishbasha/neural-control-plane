@@ -1,5 +1,7 @@
 # Neural Control Plane
 
+This work is continue here: https://github.com/mohnishbasha/stoke
+
 A personal AI infrastructure platform for orchestrating a swarm of autonomous agents across development, deployment, and operations — running on NVIDIA DGX Spark with Kubernetes, vLLM, and AIBrix.
 
 ## Goal
